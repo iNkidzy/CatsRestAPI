@@ -1,8 +1,7 @@
 const router  = require("express").Router();
-const user = require("../models/user");
-const { signupValidation } = require("../validation");
+const User = require("../models/user");
+const { signupValidation, loginValidation } = require("../validation");
 const bcrypt = require('bcrypt');
-
 
 //Routes for registration, login 
 
@@ -18,7 +17,7 @@ router.post("/signup", async(req,res) => {
     }
 
     //check if email already exists
-    const duplicateEmail = await user.findOne({email: req.body.email});
+    const duplicateEmail = await User.findOne({email: req.body.email});
 
     if(duplicateEmail){
         return res.status(400).json({error: "Error: Email already exists!" });
@@ -48,9 +47,38 @@ router.post("/signup", async(req,res) => {
 
 });
 
-router.post("/login", async(req,res) => {
-    //
-    return res.status(200).json({msg: "Success!! Login success!!"});
+router.post("/login", async (req,res) => {
+    
+    //validate login info
+    const {error} = loginValidation(req.body); 
+
+    if(error) {
+        return res.status(400).json({error: error.details[0].message });
+    }
+
+    //if valid ,find user based on email/username
+    const user = await User.findOne({username: req.body.username});
+
+    if(!user){
+        return res.status(400).json({error: "Error: User doesn't exist!" });
+    }
+
+    //user exists - check password 
+    const validPass = await bcrypt.compare(req.body.password, user.password);
+    
+    if(!validPass){
+        return res.status(400).json({error: "Error: Incorrect password" });
+    }
+    
+    
+    // create auth token with username and id 
+
+
+    // attach  auth token to header
+
+
+    
+    // return res.status(200).json({msg: "Success!! Login success!!"});
 });
 
 module.exports = router;
