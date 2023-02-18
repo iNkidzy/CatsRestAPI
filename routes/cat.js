@@ -1,0 +1,93 @@
+const router  = require("express").Router();
+const cat = require("../models/cat");
+
+
+//TODO: CRUD
+
+//Create cats
+
+router.post("/", (req, res)=> {
+
+    data = req.body; //encoded in json
+
+    cat.insertMany(data)
+    .then(data => { res.send(data); })
+    .catch(err => {res.status(500).send({message: err.message});
+})
+
+});
+
+
+// Read all cats
+
+router.get("/", (req, res)=> {
+
+    cat.find({}, { __v:0}) //query + projection params, here we exclude the __v:0 projection mongo makes so we get only the fields we want yay
+    .then(data => { res.send(data); })
+    .catch(err => {res.status(500).send({message: err.message});
+})
+
+});
+
+// Read all cats in stock
+router.get("/instock", (req, res)=> {
+
+    cat.find({ inStock: true})
+    .then(data => { res.send(data); })
+    .catch(err => {res.status(500).send({message: err.message});
+})
+
+});
+
+// Read all cats by price
+/*router.get("/price", (req, res)=> {
+
+    cat.find({ price: })
+    .then(data => { res.send(data); })
+    .catch(err => {res.status(500).send({message: err.message});
+})
+
+}); */
+
+
+
+// Read specific cat
+router.get("/:id", (req, res)=> {
+
+    cat.findById(req.params.id)
+    .then(data => { res.send(data); })
+    .catch(err => {res.status(500).send({message: err.message});
+})
+
+});
+
+
+// Update specific cat
+
+router.put("/:id", (req, res)=> {
+    const id = req.params.id;
+
+    cat.findByIdAndUpdate(id, req.body)
+    .then(data => { 
+        !data ? res.status(404).send({message:"Cannot update cat with id:" + id + ".Maybe cat was not found!"}) :  res.send({message: "Cat was successfully updated!"})  
+    })
+
+    .catch(err => {res.status(500).send({message: "Error updating cat with id:" + id});
+})
+});
+
+// Delete a cat
+
+router.delete("/:id", (req, res)=> {
+    const id = req.params.id;
+
+    cat.findByIdAndDelete(id)
+    .then(data => { 
+        !data ? res.status(404).send({message:"Cannot delete cat with id:" + id + ".Cat was not found!"}) :  res.send({message: "Cat was successfully deleted!"})  
+    })
+
+    .catch(err => {res.status(500).send({message: "Error deleting cat with id:" + id});
+})
+});
+
+module.exports = router;
