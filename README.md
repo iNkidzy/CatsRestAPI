@@ -6,12 +6,13 @@
 
 # MEN Stack [ MongoDB, ExpressJS, Node.js ]
 
-
-
+Compulsory project
 ## About
 This project is a simple RestAPI with the MEN stack for demonstrating the basic interaction between MongoDB,Nodejs and ExpressJs.
 
 It emphasizes the use of the basic CRUD operations + Authentication and etc.
+
+
 	
 ## Technologies
 Project is created with:
@@ -19,6 +20,7 @@ Project is created with:
 * Mongodb: 5.0.0
 * Mongoose: 6.9.0
 * Node: 14.16.1
+* and many more...
 
 ## Setup
 To run this project, install it locally using npm:
@@ -29,3 +31,6 @@ $ npm install
 $ npm run dev
 
 ```
+
+
+Swagger Documentation at: http://localhost:2300/api/docs/

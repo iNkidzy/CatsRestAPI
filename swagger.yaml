@@ -1,0 +1,234 @@
+openapi: 3.0.0
+info:
+  title: Cats Rest API
+  description: MongoDB ExpressJS NodeJS RestAPI welcome to the documentation
+  version: 1.0.0
+servers:
+ - url: http://localhost:2300/api/
+  description: Localhost server
+components:
+  securitySchemas:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: auth-token
+
+  schemas:
+    Cat:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age: 
+          type: number
+        color:
+          type: string
+        description: 
+          type: string
+        price: 
+          type: number
+        inStock:
+          type: boolean
+
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        creationDate:
+          type: string
+
+paths:
+
+  /user/signup:
+    post:
+      summary: Sign up
+      description: Create a new user in the database
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+
+      responses:
+      201:
+        description:  User created successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                _id:
+                  type: string
+
+  /user/login:
+    post:
+      summary: Login
+      description: Login as a existing user in the database and get JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+
+      responses:
+      201:
+        description:  User created successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                data:
+                  type: string
+
+  /cats:
+    get:
+      summary: All Cats
+      description:  Reads all cats from db as json objects.
+      responses:
+        200:
+          description: A list of cats in an array.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cat"
+    
+    post:
+      summary: Create a new Cat
+      description: Create a new Cat
+      security:
+        - ApiKeyAuth: []      
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cat"
+
+      responses:
+        201:
+          description: Cat created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cat"
+  
+
+  /cats/{id}:
+    get:
+      summary: Specific Cat
+      description:  Reads one cat from db by id.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description:  MongoDB id
+          schema:
+            type: string
+      responses:
+        200:
+          description: A cat.
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Cat"
+    
+    put:
+      summary:  Updates a Cat
+      description:  Updates a cat
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description:  MongoDB id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cat"
+
+      responses:
+        201:
+          description: Success a cat is updated
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Cat"
+
+    delete:
+      summary:  Deletes a Cat
+      description:  Deletes a cat
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description:  MongoDB id
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Cat"
+
+      responses:
+        201:
+          description: Success a cat is DELETED
+          content:
+            application/json:
+              schema:
+                  $ref: "#/components/schemas/Cat"
+  
+  /cats/color:
+     get:
+      summary:  Get Cat by Color
+      description:  Reads just cats from db which are purple
+      parameters:
+        - in: path
+          name: color
+          required: true
+          description: color purple
+          schema:
+            type: string
+      
+      responses:
+        200:
+          description: All purple cats
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: "#/components/schemas/Cat"
