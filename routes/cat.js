@@ -39,15 +39,15 @@ router.get("/instock", (req, res)=> {
 
 });
 
-// Read all cats by price
-/*router.get("/price", (req, res)=> {
+// Read all cats by color/ Get only purple cats
+router.get("/color", (req, res)=> {
 
-    cat.find({ price: })
+    cat.find({ color:'purple'})
     .then(data => { res.send(data); })
     .catch(err => {res.status(500).send({message: err.message});
 })
 
-}); */
+});
 
 
 

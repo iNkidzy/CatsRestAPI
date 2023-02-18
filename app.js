@@ -1,7 +1,7 @@
 // Define dependencies 
 const express = require("express");  
 const mongoose = require("mongoose");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const res = require("express/lib/response");
 const app = express();
 //import cat Routes file 
@@ -12,7 +12,7 @@ const catRoutes = require("./routes/cat");
 require("dotenv-flow").config();
 
 // parse request of content type json 
-// app.use(bodyParser.json()); This is build in 
+app.use(bodyParser.json()); //This wil be build in
 
 
 mongoose.set('strictQuery', true); //Unsupported dependency warning remover MongoDB

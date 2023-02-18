@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 
 let catSchema = new Schema(
     {
-        name: {type: String, required: true},
-        age: {type: Number, required: true},
-        color: {type: String, required:false},
-        description: {type: String, required:false},
-        price: {type: Number,required:true},
-        inStock: {type: Boolean,required:true}
+        name: {type: String},
+        age: {type: Number},
+        color: {type: String},
+        description: {type: String},
+        price: {type: Number},
+        inStock: {type: Boolean}
     }
 );
 
