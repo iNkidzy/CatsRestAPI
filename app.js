@@ -4,15 +4,16 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const res = require("express/lib/response");
 const app = express();
-//import cat Routes file 
+//import routes 
 const catRoutes = require("./routes/cat");
+const authRoutes = require("./routes/auth");
 
 
 // Get environment file 
 require("dotenv-flow").config();
 
 // parse request of content type json 
-app.use(bodyParser.json()); //This wil be build in
+app.use(bodyParser.json()); 
 
 
 mongoose.set('strictQuery', true); //Unsupported dependency warning remover MongoDB
@@ -35,8 +36,11 @@ app.get("/api/welcome", (req, res) => {
     res.status(200).send({message: "Welcome this is the Cat RestAPI using the MEN stack! :) "});
 })
 
-//for /api/cats include the catsRoutes file. 
+//for the cats
  app.use("/api/cats", catRoutes);
+
+//for authentication
+app.use("/api/user", authRoutes);
 
 
 //TODO: set app to listen to port and export modules
