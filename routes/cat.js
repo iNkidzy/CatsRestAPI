@@ -1,12 +1,12 @@
 const router  = require("express").Router();
 const cat = require("../models/cat");
-
+const { verifyToken } = require("../validation");
 
 //TODO: CRUD
 
 //Create cats
 
-router.post("/", (req, res)=> {
+router.post("/", verifyToken, (req, res) => {
 
     data = req.body; //encoded in json
 
@@ -49,8 +49,6 @@ router.get("/color", (req, res)=> {
 
 });
 
-
-
 // Read specific cat
 router.get("/:id", (req, res)=> {
 
@@ -64,7 +62,7 @@ router.get("/:id", (req, res)=> {
 
 // Update specific cat
 
-router.put("/:id", (req, res)=> {
+router.put("/:id", verifyToken, (req, res)=> {
     const id = req.params.id;
 
     cat.findByIdAndUpdate(id, req.body)
@@ -78,7 +76,7 @@ router.put("/:id", (req, res)=> {
 
 // Delete a cat
 
-router.delete("/:id", (req, res)=> {
+router.delete("/:id", verifyToken, (req, res)=> {
     const id = req.params.id;
 
     cat.findByIdAndDelete(id)

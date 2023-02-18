@@ -2,6 +2,7 @@ const router  = require("express").Router();
 const User = require("../models/user");
 const { signupValidation, loginValidation } = require("../validation");
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 //Routes for registration, login 
 
@@ -72,13 +73,25 @@ router.post("/login", async (req,res) => {
     
     
     // create auth token with username and id 
+    //create token
+    const token = jwt.sign( //not sing but sign :D 
+        //payload
+        {
+            username: user.name, //username
+            id: user._id
+        },
+        //TOKEN_SECRET in .env
+        process.env.TOKEN_SECRET,
+        //Expiration time in .env
+        { expiresIn: process.env.JWT_EXPIRES_IN},
 
+    )
 
     // attach  auth token to header
-
-
-    
-    // return res.status(200).json({msg: "Success!! Login success!!"});
-});
+        res.header("auth-token", token).json({
+            error: null,
+            data: {token}
+        });
+    });
 
 module.exports = router;
