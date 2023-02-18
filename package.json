@@ -27,7 +27,9 @@
     "joi": "^17.7.1",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.0.0",
-    "mongoose": "^6.9.0"
+    "mongoose": "^6.9.0",
+    "swagger-ui-express": "^4.6.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17"
