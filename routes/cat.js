@@ -22,7 +22,7 @@ router.post("/", verifyToken, (req, res) => {
 
 router.get("/", (req, res)=> {
 
-    cat.find({}, { __v:0}) //query + projection params, here we exclude the __v:0 projection mongo makes so we get only the fields we want yay
+    cat.find() //cat.find({}, { __v:0}) query + projection params, here we exclude the __v:0 projection mongo makes so we get only the fields we want yay
     .then(data => { res.send(data); })
     .catch(err => {res.status(500).send({message: err.message});
 })
