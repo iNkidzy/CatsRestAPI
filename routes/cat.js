@@ -23,7 +23,9 @@ router.post("/", verifyToken, (req, res) => {
 router.get("/", (req, res)=> {
 
     cat.find() //cat.find({}, { __v:0}) query + projection params, here we exclude the __v:0 projection mongo makes so we get only the fields we want yay
-    .then(data => { res.send(data); })
+    .then(data => {
+        res.send(data); //mapArray(data)
+     })
     .catch(err => {res.status(500).send({message: err.message});
 })
 
@@ -87,5 +89,24 @@ router.delete("/:id", verifyToken, (req, res)=> {
     .catch(err => {res.status(500).send({message: "Error deleting cat with id:" + id});
 })
 });
+
+function mapArray(inputArray) {
+   
+    let outputArray = inputArray.map(e => (
+    {
+        id: e._id,
+        name: e.name,
+        age: e.age,
+        color: e.color,
+        description: e.description,
+        price: e.price,
+        inStock: e.inStock
+    }
+    ));
+  
+
+    return outputArray;
+};
+
 
 module.exports = router;
