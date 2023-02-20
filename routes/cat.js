@@ -100,10 +100,12 @@ function mapArray(inputArray) {
         color: e.color,
         description: e.description,
         price: e.price,
-        inStock: e.inStock
+        inStock: e.inStock,
+
+        // add uri(HATEOAS) for this specific resource
+        uri: "/api/cats/" + e._id
     }
     ));
-  
 
     return outputArray;
 };
