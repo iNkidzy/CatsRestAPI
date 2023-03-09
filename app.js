@@ -4,9 +4,16 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const res = require("express/lib/response");
 const app = express();
+const cors = require('cors');
 
 const swaggerUi = require("swagger-ui-express");
 const yaml = require("yamljs");
+
+//cors
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST','PUT','DELETE']
+}));
 
 //setup swagger
 const swaggerDefinition = yaml.load('./swagger.yaml');
