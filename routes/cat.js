@@ -6,12 +6,12 @@ const { verifyToken } = require("../validation");
 
 //Create cats
 
-router.post("/", verifyToken, (req, res) => {
+router.post("/", (req, res) => { //verifyToken
 
     data = req.body; //encoded in json
 
     cat.insertMany(data)
-    .then(data => { res.send(data); })
+    .then(data => { res.status(201).send(data); })
     .catch(err => {res.status(500).send({message: err.message});
 })
 
