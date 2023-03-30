@@ -6,7 +6,7 @@ const { verifyToken } = require("../validation");
 
 //Create cats
 
-router.post("/", (req, res) => { //verifyToken
+router.post("/",verifyToken, (req, res) => {
 
     data = req.body; //encoded in json
 

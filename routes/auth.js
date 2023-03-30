@@ -7,8 +7,7 @@ const jwt = require('jsonwebtoken');
 //Routes for registration, login 
 
 router.post("/signup", async(req,res) => {
-   
-    //code
+
    
     //validate user input (username,email,password,name?)
     const {error} = signupValidation(req.body);
@@ -29,7 +28,7 @@ router.post("/signup", async(req,res) => {
     const password = await bcrypt.hash(req.body.password, salt); //generate a hash based on the pass we get from req + the salt
 
     //create a user object and save in db
-    const newUser = new user({
+    const newUser = new User({
         username: req.body.username,
         name: req.body.name,
         email: req.body.email,
