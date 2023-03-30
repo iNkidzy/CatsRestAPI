@@ -5,7 +5,9 @@ info:
   version: 1.0.0
 servers:
  - url: http://localhost:2300/api/
-description: Localhost server
+   description: Localhost server
+ - url: https://cats-restapi.onrender.com/api/
+   description: Deployed server
 components:
   securitySchemas:
     ApiKeyAuth:
