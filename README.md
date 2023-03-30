@@ -10,7 +10,8 @@ Live version: https://cats-restapi.onrender.com/api/cats
 ## About
 This project is a simple RestAPI with the MEN stack for demonstrating the basic interaction between MongoDB,Nodejs and ExpressJs.
 
-It emphasizes the use of the basic CRUD operations + Authentication and etc.
+It emphasizes the use of the basic CRUD operations + Authentication. 
+It includes simple testing using Mocha&Chai + GitHub actions for CI/CD.
 
 
 	
@@ -19,7 +20,7 @@ Project is created with:
 * Express: 4.18.2
 * Mongodb: 5.0.0
 * Mongoose: 6.9.0
-* Node: 14.16.1
+* Node: 18.14.1
 * and many more...
 
 ## Setup
@@ -33,4 +34,4 @@ $ npm run dev
 ```
 
 
-Swagger Documentation at: http://localhost:2300/api/docs/
+Swagger Documentation at: https://cats-restapi.onrender.com/api/docs/
