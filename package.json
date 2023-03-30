@@ -8,6 +8,10 @@
     "dev": "cross-env NODE_ENV=dev nodemon app.js",
     "test": "cross-env NODE_ENV=test mocha --exit"
   },
+  "engines": {
+    "node": "^18.14.1",
+    "npm": "^9.3.1"
+  },
   "keywords": [
     "mongodb",
     "expressjs",
