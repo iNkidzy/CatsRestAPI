@@ -8,6 +8,19 @@ servers:
    description: Localhost server
  - url: https://cats-restapi.onrender.com/api/
    description: Deployed server
+
+tags:
+  - name: Get
+    description: Routes that get cats
+  - name: Post
+    description: Routes that creates cats
+  - name: Update
+    description: Routes that updates cats
+  - name: Delete
+    description: Routes that deletes cats
+  - name: Authentication
+    description: Routes - signup & login for a user
+
 components:
   securitySchemas:
     ApiKeyAuth:
@@ -52,6 +65,8 @@ paths:
 
   /user/signup:
     post:
+      tags:
+      - Authentication
       summary: Sign up
       description: Create a new user in the database
       requestBody:
@@ -76,6 +91,8 @@ paths:
 
   /user/login:
     post:
+      tags:
+      - Authentication
       summary: Login
       description: Login as a existing user in the database and get JWT token
       requestBody:
@@ -105,6 +122,8 @@ paths:
 
   /cats:
     get:
+      tags:
+      - Get
       summary: All Cats
       description:  Reads all cats from db as json objects.
       responses:
@@ -119,6 +138,8 @@ paths:
 
 
     post:
+      tags:
+      - Post
       summary: Create a new Cat
       description: Create a new Cat
       security:
@@ -141,6 +162,8 @@ paths:
 
   /cats/{id}:
     get:
+      tags:
+      - Get
       summary: Specific Cat
       description:  Reads one cat from db by id.
       parameters:
@@ -161,6 +184,8 @@ paths:
                   $ref: "#/components/schemas/Cat"
     
     put:
+      tags:
+      - Update
       summary:  Updates a Cat
       description:  Updates a cat
       security:
@@ -188,6 +213,8 @@ paths:
                   $ref: "#/components/schemas/Cat"
 
     delete:
+      tags:
+      - Delete
       summary:  Deletes a Cat
       description:  Deletes a cat
       security:
@@ -216,6 +243,8 @@ paths:
   
   /cats/color:
      get:
+      tags:
+      - Get
       summary:  Get Cat by Color
       description:  Reads just cats from db which are purple
       parameters:
