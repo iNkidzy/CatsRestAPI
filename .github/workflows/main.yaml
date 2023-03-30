@@ -12,7 +12,7 @@ jobs:
 
     strategy: 
       matrix:
-        node-version: [18.x]
+        node-version: [10.x, 12.x, 14.x, 18.x]
     
     steps:
       - name: Checkout 
@@ -34,3 +34,15 @@ jobs:
           DBHOST: ${{ secrets.DBHOST }}
           TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
           JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+      
+  deploy:
+    name: Deploy
+    needs: [test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
