@@ -6,6 +6,8 @@
 
 # MEN Stack [ MongoDB, ExpressJS, Node.js ]
 
+[![NodeJS CI/CD](https://github.com/iNkidzy/CatsRestAPI/actions/workflows/main.yaml/badge.svg)](https://github.com/iNkidzy/CatsRestAPI/actions/workflows/main.yaml)
+
 Live version: https://cats-restapi.onrender.com/api/cats
 ## About
 This project is a simple RestAPI with the MEN stack for demonstrating the basic interaction between MongoDB,Nodejs and ExpressJs.
