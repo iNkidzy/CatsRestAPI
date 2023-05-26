@@ -43,7 +43,6 @@ router.post("/signup", async(req,res) => {
         res.status(400).json({ error });
     }
 
-    // return res.status(200).json({msg: "User registered successfully!!!"});
 
 });
 

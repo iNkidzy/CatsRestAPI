@@ -153,7 +153,7 @@ describe('Cats tests', () => {
                                 expect(savedCat.price).to.be.equal(cat.price);
                                 expect(savedCat.inStock).to.be.equal(cat.inStock);
 
-                                // 4) Delete product
+                                // 4) Delete cats
                                 chai.request(server)
                                     .delete('/api/cats/' + savedCat._id)
                                     .set({ "auth-token": token })
@@ -170,35 +170,5 @@ describe('Cats tests', () => {
                     });
             });
     });
-    
-    
-
-    // // Invalid input test
-    // it('invalid user input test', (done) => {
-
-    //     // 1) Register new user with invalid inputs
-    //     let user = {
-    //         username: "Lucky",
-    //         name: "Lucky Jack",
-    //         email: "mail@email.com",
-    //         password: "123456" //Faulty password - Joi/validation should catch this...
-    //     }
-    //     chai.request(server)
-    //         .post('/api/user/signup')
-    //         .send(user)
-    //         .end((err, res) => {
-                                
-    //             // Asserts
-    //             expect(res.status).to.be.equal(400); //normal expect with no custom output message
-    //             //expect(res.status,"Status is not 400 (NOT FOUND)").to.be.equal(400); //custom output message at fail
-    //             expect(res.body).to.be.a('object');
-                
-    //             expect(res.body.error.message).to.be.equal(" length must be at least 8 characters long");
-    //             console.log(res.body.error.message);  
-    //             done();              
-    //         });
-    // });
-    
-
     
 });

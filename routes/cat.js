@@ -2,8 +2,6 @@ const router  = require("express").Router();
 const cat = require("../models/cat");
 const { verifyToken } = require("../validation");
 
-//TODO: CRUD
-
 //Create cats
 
 router.post("/",verifyToken, (req, res) => {

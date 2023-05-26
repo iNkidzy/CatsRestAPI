@@ -1,8 +1,3 @@
-<!-- ## Table of contents
-- [Table of contents](#table-of-contents)
-- [General info](#general-info)
-- [Technologies](#technologies)
-- [Setup](#setup) -->
 
 # MEN Stack [ MongoDB, ExpressJS, Node.js ]
 
