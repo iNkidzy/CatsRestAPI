@@ -49,6 +49,16 @@ router.get("/color", (req, res)=> {
 
 });
 
+//Get all cats by age
+router.get("/age", (req, res)=> {
+
+    cat.find({ age: 3})
+    .then(data => { res.send(data); })
+    .catch(err => {res.status(500).send({message: err.message});
+})
+
+});
+
 // Read specific cat
 router.get("/:id", (req, res)=> {
 
